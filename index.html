@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- تحسين محركات البحث SEO Meta Tags -->
+    <title data-i18n="siteTitle">ستورفين كوفي | Storven Coffee - محطة القهوة المختصة قرب أوتوستراد إدلب</title>
+    <meta name="description" content="مقهى ستورفين كوفي (Storven Coffee) - واحتكم الدافئة ومحطة القهوة المختصة قرب أوتوستراد إدلب. بن فاخر، مشروبات باردة وساخنة، موهيتو، ميلك شيك، حلويات وأراكيل راقية.">
+    <meta name="keywords" content="ستورفين كوفي, Storven Coffee, قهوة مختصة إدلب, مقهى أوتوستراد إدلب, كافيه إدلب, كولد برو, سبانش لاتيه, موهيتو, حلويات, مقهى طريق">
+    <meta name="author" content="Storven Coffee">
+    <meta name="robots" content="index, follow">
+
+    <!-- بروتوكول Open Graph لمنصات التواصل -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Storven Coffee | ستورفين كوفي - قهوة تُحضَّر بشغف">
+    <meta property="og:description" content="محطة القهوة المختصة وأجمل الجلسات الدافئة بالقرب من أوتوستراد إدلب. تذوق أفضل سلالات البن ومشروباتنا المنعشة.">
+    <meta property="og:image" content="img/storven-logo.jpg">
+    <meta property="og:locale" content="ar_SY">
+
+    <!-- أيقونة الموقع (Favicon) -->
+    <link rel="icon" type="image/jpeg" href="img/storven-logo.jpg">
+
+    <!-- Schema.org لتصنيف نشاط المقهى التجاري -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CafeOrCoffeeShop",
+      "name": "Storven Coffee - ستورفين كوفي",
+      "image": "img/storven-logo.jpg",
+      "description": "مقهى متخصص ومحطة قهوة دافئة على الطريق قرب أوتوستراد إدلب يقدم القهوة المختصة والمشروبات المنعشة والحلويات.",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Idlib",
+        "addressCountry": "SY",
+        "streetAddress": "Near Idlib Highway, Idlib Countryside"
+      },
+      "priceRange": "$",
+      "servesCuisine": ["Specialty Coffee", "Beverages", "Desserts", "Shisha"],
+      "openingHours": "Mo-Su 07:00-01:00",
+      "telephone": "+963900000000"
+    }
+    </script>
+
+    <!-- ملف التنسيق الرئيسي -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- ==========================================================================
+         1. شاشة التحميل الأولية (Preloader)
+         ========================================================================== -->
+    <div id="preloader" role="status" aria-label="Loading Storven Coffee">
+        <div class="preloader-logo-wrap">
+            <div class="steam-wrap">
+                <span class="steam"></span>
+                <span class="steam"></span>
+                <span class="steam"></span>
+            </div>
+            <div class="preloader-logo-ring">
+                <img src="img/storven-logo.jpg" alt="Storven Coffee Logo" class="preloader-logo-img" />
+            </div>
+        </div>
+        <div class="preloader-title">Storven Coffee</div>
+    </div>
+
+    <!-- ==========================================================================
+         2. الهيدر وشريط التنقل (Header & Navigation)
+         ========================================================================== -->
+    <header class="site-header" id="main-header">
+        <div class="container header-inner">
+            <!-- الشعار -->
+            <a href="#hero" class="brand-link" aria-label="Storven Coffee Home">
+                <div class="brand-logo-ring">
+                    <img src="img/storven-logo.jpg" alt="Storven Coffee Logo" class="brand-logo-img" />
+                </div>
+                <div class="brand-text-block">
+                    <span class="brand-name brand-en">Storven Coffee</span>
+                    <span class="brand-tagline" data-i18n="tagline">قهوة تُحضَّر بشغف</span>
+                </div>
+            </a>
+
+            <!-- روابط القائمة الرئيسية -->
+            <nav>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#hero" class="nav-link active" data-i18n="navHome">الرئيسية</a></li>
+                    <li><a href="#about" class="nav-link" data-i18n="navAbout">من نحن</a></li>
+                    <li><a href="#menu" class="nav-link" data-i18n="navMenu">القائمة</a></li>
+                    <li><a href="#offers" class="nav-link" data-i18n="navOffers">العروض</a></li>
+                    <li><a href="#gallery" class="nav-link" data-i18n="navGallery">المعرض</a></li>
+                    <li><a href="#location" class="nav-link" data-i18n="navLocation">موقعنا</a></li>
+                    <li><a href="#contact" class="nav-link" data-i18n="navContact">تواصل معنا</a></li>
+                </ul>
+            </nav>
+
+            <!-- أدوات التحكم: الثيم + اللغة + زر الموبايل -->
+            <div class="header-actions">
+                <!-- زر الوضع الداكن/الفاتح -->
+                <button class="icon-btn" id="theme-toggle-btn" aria-label="تبديل الوضع الليلي / النهاري" title="تبديل الوضع">
+                    <span id="theme-icon">🌙</span>
+                </button>
+
+                <!-- زر تغيير اللغة -->
+                <button class="lang-switch-btn" id="lang-switch-btn" aria-label="تغيير لغة الموقع">
+                    <span class="lang-icon">🌐</span>
+                    <span id="lang-label">EN</span>
+                </button>
+
+                <!-- زر همبرغر للموبايل -->
+                <button class="mobile-toggle" id="mobile-toggle" aria-label="فتح القائمة للموبايل">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ==========================================================================
+             3. شريط لحظات ستورفين (Storven Moments Stories Reel)
+             ========================================================================== -->
+        <section class="moments-section" id="moments" aria-label="Storven Moments">
+            <div class="container">
+                <div class="moments-container" id="moments-container">
+                    <!-- تُولد كبسولات الستوريز برمجياً من data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             4. الهيرو (Hero Section)
+             ========================================================================== -->
+        <section class="hero-section" id="hero">
+            <div class="hero-bg-wrapper">
+                <img class="hero-bg-img" src="img/777044d1-a996-4cf4-b0ef-62a4617c7e1a.png" alt="Storven Coffee Luxury Atmosphere" />
+                <div class="hero-overlay"></div>
+            </div>
+            
+            <div class="container hero-container">
+                <!-- المحتوى والنصوص والأزرار (في الجهة اليمنى باللغة العربية) -->
+                <div class="hero-content reveal active">
+                    <div class="hero-badge">
+                        <span data-i18n="heroBadge">☕ قهوة مختصة، لحظات لا تُنسى</span>
+                    </div>
+                    
+                    <h1 class="hero-title" aria-label="Storven Coffee">
+                        <span class="hero-title-prefix" data-i18n="heroTitlePrefix">مرحباً بكم في</span>
+                        <span class="hero-title-steam-stage" id="heroSteamStage">
+                            <!-- كانفاس الدخان والبخار المتصاعد الحقيقي فائق الواقعية -->
+                            <canvas id="heroTitleSteamCanvas" class="hero-title-steam-canvas" aria-hidden="true"></canvas>
+                            <span class="hero-title-type-wrap" dir="ltr">
+                                <span id="heroTypewriterText" class="brand-accent brand-en">Storven Coffee</span>
+                                <span class="hero-typewriter-cursor" id="heroTypewriterCursor" aria-hidden="true"></span>
+                            </span>
+                        </span>
+                    </h1>
+
+                    <p class="hero-desc" data-i18n="heroSubtitle">
+                        محطتك الدافئة على أوتوستراد إدلب. حبوب منتقاة بعناية، تحميص احترافي، وأجواء تأسر الحواس لتبدأ رحلتك بأفضل مذاق.
+                    </p>
+
+                    <div class="hero-actions">
+                        <a href="#menu" class="btn-primary" data-i18n="heroBtnMenu">
+                            تصفح القائمة ☕
+                        </a>
+                        <a href="#contact" class="btn-secondary" data-i18n="heroBtnContact">
+                            تواصل معنا عبر واتساب 💬
+                        </a>
+                    </div>
+
+                    <!-- إحصائيات سريعة في الهيرو -->
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-icon">✨</span>
+                            <span class="stat-text" data-i18n="heroStatDrinks">+35 صنفاً مميزاً</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🌱</span>
+                            <span class="stat-text" data-i18n="heroStatOrigin">بن مختص 100%</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-icon">🛋️</span>
+                            <span class="stat-text" data-i18n="heroStatAmbiance">أجواء عائلية ودافئة</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- المشهد البصري السينمائي ثلاثي الأبعاد: فنجان القهوة وفوران الإسبريسو المتدفق (في الجهة اليسرى) -->
+                <div class="hero-visual-3d reveal active" id="hero-visual-container" aria-label="Storven 3D Coffee Splash Scene">
+                    <div class="hero-cup-aura"></div>
+                    <div class="hero-cup-3d-wrap" id="hero-cup-3d-wrap">
+                        <img src="img/storven-hero-cup.png" alt="Storven Luxury 3D Ceramic Coffee Cup" class="hero-cup-img" id="hero-cup-img" loading="eager" />
+                        <canvas id="coffee-splash-canvas" class="coffee-splash-canvas" aria-hidden="true"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             5. قصتنا (Our Story / About Section)
+             ========================================================================== -->
+        <section class="about-section" id="about">
+            <div class="container">
+                <div class="about-grid">
+                    <!-- عمود الصورة والشارة العائمة -->
+                    <div class="about-image-wrapper reveal">
+                        <img class="about-main-img" src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?auto=format&fit=crop&w=1000&q=80" onerror="this.onerror=null;this.src='img/777044d1-a996-4cf4-b0ef-62a4617c7e1a.png'" alt="Storven Coffee Craft" loading="lazy" />
+                        <div class="about-floating-badge">
+                            <span class="floating-badge-icon">☕</span>
+                            <div class="floating-badge-text">
+                                <strong data-i18n="badgeDailySpecial">+10 مشروبات مبتكرة يومياً</strong>
+                                <span>نبتكر لنبهج حواسك</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- عمود النصوص والمزايا الأربعة -->
+                    <div class="about-content reveal reveal-delay-1">
+                        <div class="badge-tag" data-i18n="storyBadge">قصتنا وأصل الشغف</div>
+                        <h2 class="section-title" data-i18n="storyTitle">بيت القهوة الذي تحنّ إليه في كل طريق</h2>
+                        
+                        <p class="about-text" data-i18n="storyP1">
+                            انطلق مقهى «ستورفين كوفي» ليكون واحة الاستراحة الأولى ومحطة الاسترخاء الراقية للمسافرين وأهالي المنطقة بالقرب من أوتوستراد إدلب. نؤمن بأن فنجان القهوة ليس مجرد مشروب عابر، بل هو طقس من السعادة والإلهام.
+                        </p>
+                        <p class="about-text" data-i18n="storyP2">
+                            نختار محاصيل البن الأثيوبي والكولومبي بعناية فائقة ونحمصها بأساليب دقيقة، مع تشكيلة عصرية واسعة تشمل الموهيتو المنعش، الميلك شيك، الحلويات الفاخرة والأراكيل الفاخرة.
+                        </p>
+
+                        <!-- بطاقات المزايا الأربعة -->
+                        <div class="about-features-grid">
+                            <div class="feature-card">
+                                <div class="feature-icon-box">🌱</div>
+                                <h3 class="feature-title" data-i18n="feature1Title">حبوب مختارة بعناية</h3>
+                                <p class="feature-desc" data-i18n="feature1Desc">سلالات بن نقية بدرجات تحميص متوازنة تبرز النوتات العطرية الفريدة.</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon-box">✨</div>
+                                <h3 class="feature-title" data-i18n="feature2Title">أجواء دافئة وفاخرة</h3>
+                                <p class="feature-desc" data-i18n="feature2Desc">تصميم مريح يجمع بين الطبيعة الخضراء ولمسات الخشب الذهبية الدافئة.</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon-box">⚡</div>
+                                <h3 class="feature-title" data-i18n="feature3Title">خدمة سريعة للمسافرين</h3>
+                                <p class="feature-desc" data-i18n="feature3Desc">استلم طلبك سريعاً لتواصل رحلتك بنشاط وانتعاش.</p>
+                            </div>
+
+                            <div class="feature-card">
+                                <div class="feature-icon-box">📍</div>
+                                <h3 class="feature-title" data-i18n="feature4Title">موقع استراتيجي مميز</h3>
+                                <p class="feature-desc" data-i18n="feature4Desc">على مقربة مباشرة من أوتوستراد إدلب مع مواقف مريحة وواسعة.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             6. القائمة التفاعلية (Interactive Menu Section)
+             ========================================================================== -->
+        <section class="menu-section" id="menu">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="badge-tag">Storven Coffee Menu</span>
+                    <h2 class="section-title" data-i18n="menuTitle">تشكيلة Storven المميزة</h2>
+                    <p class="section-subtitle" data-i18n="menuSubtitle">استكشف قائمتنا الغنية بالمشروبات المختصة والمأكولات الشهية</p>
+                    <div style="margin-top: 1.2rem;">
+                        <span class="currency-notice-badge" data-i18n="menuCurrencyBadge">
+                            💵 الأسعار بالدولار الأمريكي ($) حسب القائمة المعتمدة في المقهى
+                        </span>
+                    </div>
+                </div>
+
+                <!-- شريط البحث المباشر -->
+                <div class="menu-search-wrapper reveal">
+                    <div class="search-input-box">
+                        <input type="text" id="menu-search-input" class="search-input" placeholder="ابحث عن مشروبك أو حلاك المفضل..." data-i18n-ph="menuSearchPlaceholder" aria-label="البحث في القائمة">
+                        <span class="search-icon-decor">🔍</span>
+                    </div>
+                </div>
+
+                <!-- شريط كبسولات الفئات مع أزرار التمرير الأفقي -->
+                <div class="category-filter-nav reveal">
+                    <button class="nav-scroll-arrow" id="scroll-filter-left" aria-label="تمرير الفئات لليسار">❮</button>
+                    <div class="capsules-scroll-track" id="capsules-track">
+                        <!-- تُحقن الكبسولات برمجياً -->
+                    </div>
+                    <button class="nav-scroll-arrow" id="scroll-filter-right" aria-label="تمرير الفئات لليمين">❯</button>
+                </div>
+
+                <!-- شبكة بطاقات المنتجات التفاعلية -->
+                <div class="menu-products-grid" id="menu-grid">
+                    <!-- تُولد المنتجات برمجياً من data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             7. العروض الحصرية (Special Offers Section)
+             ========================================================================== -->
+        <section class="offers-section" id="offers">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="badge-tag">Special Deals</span>
+                    <h2 class="section-title" data-i18n="offersTitle">عروض ستورفين الحصرية</h2>
+                    <p class="section-subtitle" data-i18n="offersSubtitle">باقات مميزة ومذاقات لا تقاوم بأسعار استثنائية</p>
+                </div>
+
+                <div class="offers-grid" id="offers-grid">
+                    <!-- تُولد بطاقات العروض برمجياً من data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             8. المعرض (Gallery Section & Lightbox)
+             ========================================================================== -->
+        <section class="gallery-section" id="gallery">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="badge-tag">Visual Experience</span>
+                    <h2 class="section-title" data-i18n="galleryTitle">معرض الصور والأجواء</h2>
+                    <p class="section-subtitle" data-i18n="gallerySubtitle">لقطات توثق تفاصيل المكان ورائحة البن المنعشة</p>
+                </div>
+
+                <div class="gallery-grid" id="gallery-grid">
+                    <!-- تُولد صور المعرض برمجياً من data.js -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             9. موقعنا وساعات العمل والخريطة التفاعلية (Location & Interactive Map Section)
+             ========================================================================== -->
+        <section class="location-section" id="location">
+            <div class="container">
+                <div class="section-header reveal">
+                    <div class="location-status-badge">
+                        <span class="live-status-dot"></span>
+                        <span id="location-live-status" data-i18n="locationLiveOpen">مفتوح الآن • نستقبلكم حتى 1:00 ص</span>
+                    </div>
+                    <h2 class="section-title" data-i18n="locationTitle">موقعنا وساعات العمل</h2>
+                    <p class="section-subtitle" data-i18n="locationSubtitle">نحن بانتظارك لتستمتع بأجمل الأوقات معنا على طريق أوتوستراد إدلب</p>
+                </div>
+
+                <div class="location-grid">
+                    <!-- معلومات العنوان وأوقات الدوام والمزايا -->
+                    <div class="location-info-card reveal">
+                        <div class="location-card-header">
+                            <span class="badge-tag">Visit Storven</span>
+                            <div class="coordinates-pill" id="copy-coords-btn" role="button" tabindex="0" title="انقر لنسخ الإحداثيات">
+                                <span class="gps-icon">🛰️</span>
+                                <span class="coords-text">35.9306° N, 36.6339° E</span>
+                            </div>
+                        </div>
+
+                        <!-- تفاصيل العنوان -->
+                        <div class="location-detail-group">
+                            <div class="detail-icon-pill">📍</div>
+                            <div class="detail-texts">
+                                <h4 data-i18n="locationAddressTitle">العنوان:</h4>
+                                <p data-i18n="address" id="cafe-address-text">سوريا، ريف إدلب - قرب أوتوستراد إدلب الدولي</p>
+                            </div>
+                        </div>
+
+                        <!-- تفاصيل ساعات العمل -->
+                        <div class="location-detail-group">
+                            <div class="detail-icon-pill">⏰</div>
+                            <div class="detail-texts">
+                                <h4 data-i18n="locationHoursTitle">ساعات العمل:</h4>
+                                <p data-i18n="workingHours">يومياً من الساعة 7:00 صباحاً حتى 1:00 بعد منتصف الليل</p>
+                            </div>
+                        </div>
+
+                        <!-- خدمات ومزايا المحطة على الطريق -->
+                        <div class="location-amenities-wrap">
+                            <h4 class="amenities-title" data-i18n="locationAmenitiesTitle">مزايا وخدمات المحطة:</h4>
+                            <div class="amenities-grid">
+                                <div class="amenity-chip">
+                                    <span class="amenity-icon">🚗</span>
+                                    <span data-i18n="locationAmenityParking">مواقف واسعة مجانية</span>
+                                </div>
+                                <div class="amenity-chip">
+                                    <span class="amenity-icon">📶</span>
+                                    <span data-i18n="locationAmenityWifi">واي فاي سريع مجاناً</span>
+                                </div>
+                                <div class="amenity-chip">
+                                    <span class="amenity-icon">⚡</span>
+                                    <span data-i18n="locationAmenityCharging">شواحن للهواتف</span>
+                                </div>
+                                <div class="amenity-chip">
+                                    <span class="amenity-icon">🌿</span>
+                                    <span data-i18n="locationAmenityLounge">جلسات عائلية وتراس</span>
+                                </div>
+                                <div class="amenity-chip">
+                                    <span class="amenity-icon">☕</span>
+                                    <span data-i18n="locationAmenityDrive">استلام سريع للسيارة</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- حاسبة المسافة التفاعلية من موقع الزائر -->
+                        <div class="live-distance-card" id="live-distance-card">
+                            <div class="distance-header">
+                                <div class="distance-title-wrap">
+                                    <span class="distance-beacon-icon">🧭</span>
+                                    <div>
+                                        <h4 class="distance-main-title" data-i18n="distanceCardTitle">المسافة من موقعك إلى المقهى</h4>
+                                        <p class="distance-sub-hint" data-i18n="distanceCardHint">حدد موقعك المباشر أو اختر منطقتك لمعرفة المسافة ووقت الوصول</p>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn-calc-gps" id="btn-calc-gps" aria-label="تحديد مسافتي المباشرة">
+                                    <span class="gps-pulse-dot"></span>
+                                    <span id="btn-calc-label" data-i18n="distanceBtnGps">تحديد مسافتي المباشرة 📍</span>
+                                </button>
+                            </div>
+
+                            <!-- تفاصيل المسافة المحسوبة -->
+                            <div class="distance-result-box" id="distance-result-box">
+                                <div class="dist-stat">
+                                    <span class="dist-val" id="user-dist-km">3.8 كم</span>
+                                    <span class="dist-lbl" data-i18n="distanceLabel">المسافة بالسيارة</span>
+                                </div>
+                                <div class="dist-stat">
+                                    <span class="dist-val" id="user-dist-time">~5 دقائق</span>
+                                    <span class="dist-lbl" data-i18n="distanceTimeLabel">وقت القيادة التقديري</span>
+                                </div>
+                                <div class="dist-stat">
+                                    <span class="dist-val" id="user-dist-highway">مخرج مباشر</span>
+                                    <span class="dist-lbl" data-i18n="distanceRouteLabel">طريق مباشر وسلس</span>
+                                </div>
+                            </div>
+
+                            <!-- مسافات سريعة من المدن والبلدات المجاورة -->
+                            <div class="quick-preset-cities">
+                                <span class="quick-preset-title" data-i18n="distanceQuickPresets">مسافات تقديرية سريعة:</span>
+                                <div class="preset-chips-wrap">
+                                    <button type="button" class="preset-city-btn active" data-km="3.8" data-time="5" data-lat="35.9333" data-lng="36.6333" data-name="وسط إدلب">وسط إدلب (3.8 كم)</button>
+                                    <button type="button" class="preset-city-btn" data-km="7.5" data-time="9" data-lat="35.9986" data-lng="36.7214" data-name="معرة مصرين">معرة مصرين (7.5 كم)</button>
+                                    <button type="button" class="preset-city-btn" data-km="6.2" data-time="8" data-lat="35.9583" data-lng="36.7167" data-name="بنش">بنش (6.2 كم)</button>
+                                    <button type="button" class="preset-city-btn" data-km="24" data-time="20" data-lat="36.1833" data-lng="36.7167" data-name="سرمدا">سرمدا (24 كم)</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- أزرار الإجراءات السريعة -->
+                        <div class="location-actions-group">
+                            <a href="#" target="_blank" rel="noopener noreferrer" class="btn-primary" id="google-map-btn">
+                                <span data-i18n="locationGetDirections">الاتجاهات عبر خرائط جوجل</span> 🗺️
+                            </a>
+                            <button type="button" class="btn-secondary copy-btn" id="copy-address-btn">
+                                <span id="copy-address-label" data-i18n="locationCopyAddress">نسخ العنوان 📋</span>
+                            </button>
+                            <a href="https://wa.me/?text=%D9%85%D9%88%D9%82%D8%B9%20%D9%85%D9%82%D9%87%D9%88%20%D8%B3%D8%AA%D9%88%D8%B1%D9%81%D9%8A%D9%86%20%D9%83%D9%88%D9%81%D9%8A%20%D9%82%D8%B1%D8%A8%20%D8%A3%D9%88%D8%AA%D9%88%D8%B3%D8%AA%D8%B1%D8%A7%D8%AF%20%D8%A5%D8%AF%D9%84%D8%A8%3A%20https%3A%2F%2Fmaps.google.com%2F%3Fq%3D35.9306%2C36.6339" target="_blank" rel="noopener noreferrer" class="btn-secondary" id="share-location-wa-btn">
+                                <span data-i18n="locationShareWa">إرسال الموقع لواتساب 📲</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- إطار الخريطة الاحترافي مع واجهة HUD تفاعلية -->
+                    <div class="map-interactive-card reveal reveal-delay-1">
+                        <!-- شريط التحكم العلوي بالخريطة (HUD) -->
+                        <div class="map-hud-bar">
+                            <div class="map-hud-brand">
+                                <span class="map-hud-pin">📍</span>
+                                <strong>Storven Coffee</strong>
+                                <span class="map-hud-badge">Official Location</span>
+                            </div>
+                            <div class="map-hud-tools">
+                                <button type="button" class="map-tool-btn" id="map-interaction-toggle" aria-label="تبديل قفل الخريطة">
+                                    <span id="map-lock-icon">🔒</span>
+                                    <span id="map-lock-label" data-i18n="locationMapControlsToggle">انقر لتفعيل الخريطة</span>
+                                </button>
+                                <a href="https://maps.google.com/?q=35.9306,36.6339" target="_blank" rel="noopener noreferrer" class="map-tool-btn" title="تكبير بملء الشاشة">
+                                    <span>↗</span>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- شريط حالة الطقس المباشرة في موقع المقهى -->
+                        <div class="map-weather-banner" id="map-weather-banner">
+                            <div class="weather-current-badge">
+                                <span class="weather-anim-icon" id="weather-icon">☀️</span>
+                                <div class="weather-texts">
+                                    <span class="weather-temp-label">
+                                        <strong id="weather-temp">23°C</strong> - <span id="weather-condition" data-i18n="weatherCondition">مشمس ومعتدل</span>
+                                    </span>
+                                    <span class="weather-subnote" data-i18n="weatherSubnote">أجواء مهيأة للجلسات الخارجية والتراس 🌿</span>
+                                </div>
+                            </div>
+                            <div class="weather-meta-tags">
+                                <span class="weather-tag">💧 <span id="weather-humidity">45%</span> <span data-i18n="weatherHumidity">رطوبة</span></span>
+                                <span class="weather-tag">💨 <span id="weather-wind">12 كم/س</span> <span data-i18n="weatherWind">رياح</span></span>
+                            </div>
+                        </div>
+
+                        <!-- حاوية iframe مع مؤشر النبض الراداري -->
+                        <div class="map-wrapper" id="map-wrapper">
+                            <iframe 
+                                id="google-maps-iframe"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d102928.32454133527!2d36.57723945820311!3d35.930648499999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1525a77f0a8d6e35%3A0x6b9d628d0bebb160!2sIdlib%2C%20Syria!5e0!3m2!1sen!2s!4v1710000000000!5m2!1sen!2s" 
+                                width="100%" 
+                                height="100%" 
+                                style="border:0;" 
+                                allowfullscreen="" 
+                                loading="lazy" 
+                                referrerpolicy="no-referrer-when-downgrade"
+                                title="خريطة موقع مقهى ستورفين كوفي قرب أوتوستراد إدلب">
+                            </iframe>
+                            <!-- منارة الرادار الذهبية المنبثقة -->
+                            <div class="map-radar-pin" aria-hidden="true">
+                                <span class="radar-circle"></span>
+                                <span class="radar-core">☕</span>
+                            </div>
+                        </div>
+
+                        <!-- شريط التقدير السريع للمسافات بالأسفل -->
+                        <div class="map-distances-bar">
+                            <div class="distance-chip">
+                                <span class="distance-icon">⏱️</span>
+                                <span data-i18n="locationDistCity">5 دقائق من وسط إدلب</span>
+                            </div>
+                            <div class="distance-chip">
+                                <span class="distance-icon">🛣️</span>
+                                <span data-i18n="locationDistHighway">دقيقة واحدة من الأوتوستراد</span>
+                            </div>
+                            <div class="distance-chip">
+                                <span class="distance-icon">🚘</span>
+                                <span>مواقف مباشرة أمام المدخل</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==========================================================================
+             10. تواصل معنا ونموذج واتساب (Contact & WhatsApp Direct Form)
+             ========================================================================== -->
+        <section class="contact-section" id="contact">
+            <!-- فلتر الملمس الرصاصي للـ Doodle (Pencil Texture Filter) -->
+            <svg aria-hidden="true" style="position:absolute;width:0;height:0;overflow:hidden;pointer-events:none;" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <filter id="pencil-texture" x="-10%" y="-10%" width="120%" height="120%">
+                        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise"/>
+                        <feDisplacementMap in="SourceGraphic" in2="noise" scale="1.2" xChannelSelector="R" yChannelSelector="G"/>
+                    </filter>
+                </defs>
+            </svg>
+
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="badge-tag">Stay in Touch</span>
+                    <h2 class="section-title" data-i18n="contactTitle">تواصل معنا مباشرة</h2>
+                    <p class="section-subtitle" data-i18n="contactSubtitle">يسعدنا الرد على استفساراتك وحجز طاولتك أو استقبال طلبك الخارجي</p>
+                </div>
+
+                <div class="contact-grid">
+                    <!-- طرق التواصل والسوشيال ميديا -->
+                    <div class="contact-info-panel reveal">
+                        <div class="contact-direct-cards">
+                            <a href="https://wa.me/963900000000" target="_blank" rel="noopener noreferrer" class="direct-card">
+                                <span class="direct-icon">💬</span>
+                                <div class="direct-texts">
+                                    <span>واتساب مباشر (خدمة الزبائن)</span>
+                                    <strong>+963 900 000 000</strong>
+                                </div>
+                            </a>
+
+                            <div class="direct-card">
+                                <span class="direct-icon">📞</span>
+                                <div class="direct-texts">
+                                    <span>الاتصال الهاتفي السريع</span>
+                                    <strong>+963 900 000 000</strong>
+                                </div>
+                            </div>
+
+                            <div class="direct-card">
+                                <span class="direct-icon">✉️</span>
+                                <div class="direct-texts">
+                                    <span>البريد الإلكتروني للإدارة</span>
+                                    <strong>contact@storvencoffee.com</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- بطاقة أيقونات التواصل بأسلوب الـ Doodle الفني والرسم اليدوي -->
+                        <div class="doodle-notebook">
+                            <h3 class="doodle-title" data-i18n="doodleTitle">Let's Stay Connected!</h3>
+                            <p class="doodle-subtitle" data-i18n="doodleSubtitle">تابعنا على منصات التواصل الاجتماعي ✏️</p>
+
+                            <ul class="doodle-container">
+                                <!-- Facebook -->
+                                <li class="doodle-icon-content">
+                                    <a class="doodle-link link-facebook"
+                                       href="https://facebook.com/storvencoffee"
+                                       target="_blank" rel="noopener noreferrer"
+                                       aria-label="Facebook">
+                                        <svg class="doodle-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M13.4 21v-8h2.7l.4-3.1h-3.1v-2
+                                            c0-.9.3-1.5 1.6-1.5h1.7V3.6
+                                            c-.8-.1-1.6-.2-2.5-.2
+                                            -2.5 0-4.2 1.5-4.2 4.3v2.2H7.2V13H10v8z"/>
+                                        </svg>
+                                    </a>
+                                    <div class="doodle-tooltip tooltip-facebook">Facebook</div>
+                                </li>
+
+                                <!-- Instagram -->
+                                <li class="doodle-icon-content">
+                                    <a class="doodle-link link-instagram"
+                                       href="https://instagram.com/storvencoffee"
+                                       target="_blank" rel="noopener noreferrer"
+                                       aria-label="Instagram">
+                                        <svg class="doodle-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                            <rect x="3" y="3" width="18" height="18" rx="5"
+                                                  fill="none" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="12" cy="12" r="4"
+                                                    fill="none" stroke="currentColor" stroke-width="2"/>
+                                            <circle cx="17.5" cy="6.5" r="1.3"/>
+                                        </svg>
+                                    </a>
+                                    <div class="doodle-tooltip tooltip-instagram">Instagram</div>
+                                </li>
+
+                                <!-- TikTok -->
+                                <li class="doodle-icon-content">
+                                    <a class="doodle-link link-tiktok"
+                                       href="https://tiktok.com/@storvencoffee"
+                                       target="_blank" rel="noopener noreferrer"
+                                       aria-label="TikTok">
+                                        <svg class="doodle-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64c.29 0 .58.04.86.12V9.4a6.33 6.33 0 0 0-.86-.06A6.34 6.34 0 0 0 3.1 15.68a6.34 6.34 0 0 0 10.82 4.48c.41-.41.76-.89 1.02-1.42.34-.7.52-1.47.52-2.27V8.71a8.28 8.28 0 0 0 4.13 1.15V6.41a4.85 4.85 0 0 1 0 .28z"/>
+                                        </svg>
+                                    </a>
+                                    <div class="doodle-tooltip tooltip-tiktok">TikTok</div>
+                                </li>
+
+                                <!-- X / Twitter -->
+                                <li class="doodle-icon-content">
+                                    <a class="doodle-link link-twitter"
+                                       href="https://x.com/storvencoffee"
+                                       target="_blank" rel="noopener noreferrer"
+                                       aria-label="X (Twitter)">
+                                        <svg class="doodle-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M18.9 2H22l-6.8 7.8L23.2 22h-6.3L12 14.6
+                                            5.6 22H2.4l7.3-8.4L1.8 2h6.5l4.5 6.8L18.9 2zm-1.1
+                                            18h1.7L7.2 3.9H5.4L17.8 20z"/>
+                                        </svg>
+                                    </a>
+                                    <div class="doodle-tooltip tooltip-twitter">X / Twitter</div>
+                                </li>
+
+                                <!-- Telegram -->
+                                <li class="doodle-icon-content">
+                                    <a class="doodle-link link-telegram"
+                                       href="https://t.me/storvencoffee"
+                                       target="_blank" rel="noopener noreferrer"
+                                       aria-label="Telegram">
+                                        <svg class="doodle-svg" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M21.8 3.2 18.5 20c-.2 1.2-.9 1.5-1.9.9
+                                            l-5.3-3.9-2.6 2.5c-.3.3-.6.6-1.1.6l.4-5.4L18
+                                            6.6c.4-.4-.1-.6-.6-.3L5.1 14 0 12.1c-1.1-.4-1.1-1.1
+                                            .2-1.6L20.8 4c.9-.4 1.7.2 1 1.2z"/>
+                                        </svg>
+                                    </a>
+                                    <div class="doodle-tooltip tooltip-telegram">Telegram</div>
+                                </li>
+                            </ul>
+
+                            <div class="doodle-footer" data-i18n="doodleFooter">Made with ☕ &amp; creativity ✏️</div>
+                        </div>
+                    </div>
+
+                    <!-- نموذج إرسال رسالة سريعة إلى واتساب -->
+                    <div class="contact-form-card reveal reveal-delay-1">
+                        <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--text-primary);" data-i18n="contactFormTitle">
+                            إرسال رسالة سريعة لواتساب
+                        </h3>
+
+                        <form id="quick-contact-form">
+                            <div class="form-group">
+                                <label for="contact-name" class="form-label" data-i18n="contactNameLabel">الاسم الكريم</label>
+                                <input type="text" id="contact-name" class="form-control" required placeholder="أدخل اسمك هنا..." data-i18n-ph="contactNamePlaceholder">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-topic" class="form-label" data-i18n="contactTopicLabel">نوع الطلب</label>
+                                <select id="contact-topic" class="form-control">
+                                    <option value="general" data-i18n="contactTopicGeneral">استفسار عام</option>
+                                    <option value="reservation" data-i18n="contactTopicReserve">حجز جلسة أو طاولة</option>
+                                    <option value="order" data-i18n="contactTopicOrder">طلب خارجي مسبق</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="contact-message" class="form-label" data-i18n="contactMessageLabel">الرسالة أو الطلب</label>
+                                <textarea id="contact-message" class="form-control" required placeholder="اكتب تفاصيل طلبك أو رسالتك..." data-i18n-ph="contactMessagePlaceholder"></textarea>
+                            </div>
+
+                            <button type="submit" class="btn-submit-whatsapp">
+                                <span data-i18n="contactSendBtn">إرسال الرسالة إلى واتساب 💬</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==========================================================================
+         11. الفوتر (Footer)
+         ========================================================================== -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- نبذة عن ستورفين -->
+                <div class="footer-brand-col">
+                    <a href="#hero" class="brand-link" style="margin-bottom: 1rem;">
+                        <div class="brand-logo-ring">
+                            <img src="img/storven-logo.jpg" alt="Storven Coffee Logo" class="brand-logo-img" />
+                        </div>
+                        <div class="brand-text-block">
+                            <span class="brand-name brand-en">Storven Coffee</span>
+                            <span class="brand-tagline" style="color: #DFC587;" data-i18n="tagline">قهوة تُحضَّر بشغف</span>
+                        </div>
+                    </a>
+                    <p class="footer-desc-text" data-i18n="footerDesc">
+                        وجهتكم الأولى للقهوة المختصة وأرقى المشروبات على طريق أوتوستراد إدلب. شغف متجدد في كل قطرة.
+                    </p>
+                </div>
+
+                <!-- روابط سريعة -->
+                <div class="footer-links-col">
+                    <h4 class="footer-col-title" data-i18n="footerQuickLinks">روابط سريعة</h4>
+                    <ul class="footer-nav-list">
+                        <li><a href="#hero" data-i18n="navHome">الرئيسية</a></li>
+                        <li><a href="#about" data-i18n="navAbout">من نحن</a></li>
+                        <li><a href="#menu" data-i18n="navMenu">القائمة</a></li>
+                        <li><a href="#offers" data-i18n="navOffers">العروض</a></li>
+                        <li><a href="#gallery" data-i18n="navGallery">المعرض</a></li>
+                        <li><a href="#location" data-i18n="navLocation">موقعنا</a></li>
+                    </ul>
+                </div>
+
+                <!-- مواعيد العمل والاتصال -->
+                <div class="footer-info-col">
+                    <h4 class="footer-col-title" data-i18n="footerContactInfo">معلومات الاتصال</h4>
+                    <p style="font-size: 0.95rem; margin-bottom: 0.8rem; line-height: 1.7;">
+                        📍 <span data-i18n="address">سوريا، ريف إدلب - قرب أوتوستراد إدلب الدولي</span>
+                    </p>
+                    <p style="font-size: 0.95rem; margin-bottom: 0.8rem; line-height: 1.7;">
+                        ⏰ <span data-i18n="workingHours">يومياً من الساعة 7:00 صباحاً حتى 1:00 بعد منتصف الليل</span>
+                    </p>
+                    <p style="font-size: 0.95rem;">
+                        📞 <strong>+963 900 000 000</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- شريط الحقوق السفلي -->
+            <div class="footer-bottom">
+                <p data-i18n="footerRights">جميع الحقوق محفوظة © 2025 مقهى ستورفين كوفي (Storven Coffee).</p>
+                <p data-i18n="footerDesignNotice">صُمم بحب وإتقان لرواد القهوة المختصة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+         12. الزر العائم الثابت لواتساب (Floating Pulsing WhatsApp Button)
+         ========================================================================== -->
+    <a href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-float-btn" id="floating-whatsapp-btn" aria-label="تواصل معنا عبر واتساب">
+        <span class="whatsapp-float-icon">💬</span>
+        <span data-i18n="floatWhatsAppText">تواصل معنا</span>
+    </a>
+
+    <!-- ==========================================================================
+         13. مشغل الستوريز بملء الشاشة (Stories Vertical Modal)
+         ========================================================================== -->
+    <div class="story-viewer-modal" id="story-modal" role="dialog" aria-modal="true" aria-label="Storven Moments Viewer">
+        <button class="story-nav-btn story-nav-prev" id="story-prev-btn" aria-label="الستوري السابق">❮</button>
+        
+        <div class="story-viewer-card">
+            <!-- أشرطة التقدم العلوية -->
+            <div class="story-progress-bar-wrap" id="story-progress-bars"></div>
+
+            <!-- هيدر الستوري -->
+            <div class="story-header-overlay">
+                <div class="story-user-meta">
+                    <img src="img/storven-logo.jpg" alt="Storven Avatar" class="story-avatar-small" />
+                    <span class="story-author-name" id="story-author-name">Storven Moments</span>
+                </div>
+                <button class="story-close-btn" id="story-close-btn" aria-label="إغلاق الستوري">✕</button>
+            </div>
+
+            <!-- حاوية الوسائط والصورة التفاعلية -->
+            <div class="story-media-view" id="story-media-view">
+                <img id="story-media-img" class="story-media-img" src="" alt="Storven Story Content" />
+            </div>
+
+            <!-- الشرح النصي أسفل الستوري -->
+            <div class="story-caption-overlay">
+                <p class="story-caption-text" id="story-caption-text"></p>
+            </div>
+        </div>
+
+        <button class="story-nav-btn story-nav-next" id="story-next-btn" aria-label="الستوري التالي">❯</button>
+    </div>
+
+    <!-- ==========================================================================
+         14. عارض الصور المنبثق للمعرض (Gallery Lightbox Modal)
+         ========================================================================== -->
+    <div class="lightbox-modal" id="lightbox-modal" role="dialog" aria-modal="true" aria-label="Image Preview">
+        <div class="lightbox-content">
+            <button class="lightbox-close" id="lightbox-close" aria-label="إغلاق معاينة الصورة">✕</button>
+            <img class="lightbox-img" id="lightbox-img" src="" alt="تكبير الصورة" />
+            <p class="lightbox-caption" id="lightbox-caption"></p>
+        </div>
+    </div>
+
+    <!-- ملفات الجافاسكريبت والمحرك ثلاثي الأبعاد -->
+    <script src="js/three.min.js"></script>
+    <script src="js/hero-coffee-3d.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
