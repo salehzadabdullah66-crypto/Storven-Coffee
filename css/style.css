@@ -109,6 +109,7 @@ body {
   width: 100%;
   position: relative;
   transition: background-color 0.4s ease, color 0.4s ease;
+  /* Compensate for fixed header on mobile - applied via media query below */
 }
 
 /* دعم اللغات والاتجاهات */
@@ -286,7 +287,7 @@ button, input, textarea, select {
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
-  z-index: 1000;
+  z-index: 1001;
   transition: var(--transition-smooth);
 }
 
@@ -928,6 +929,14 @@ button, input, textarea, select {
    ========================================================================== */
 section[id] {
   scroll-margin-top: 85px;
+}
+
+@media (max-width: 640px) {
+  section[id] { scroll-margin-top: 75px; }
+}
+
+@media (max-width: 380px) {
+  section[id] { scroll-margin-top: 68px; }
 }
 
 .about-section {
@@ -2908,6 +2917,20 @@ textarea.form-control {
    15. التصميم المتجاوب للهواتف والأجهزة اللوحية (Responsive Breakpoints)
    ========================================================================== */
 @media (max-width: 992px) {
+  /* تثبيت الهيدر كـ fixed على الموبايل لأن overflow-x: hidden على html/body يكسر sticky */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+  }
+
+  /* تعويض ارتفاع الهيدر الثابت */
+  body {
+    padding-top: 80px;
+  }
+
   .hero-container {
     grid-template-columns: 1fr;
     gap: 2.5rem;
@@ -2990,6 +3013,17 @@ textarea.form-control {
 @media (max-width: 640px) {
   .container {
     padding-inline: 1rem;
+  }
+
+  /* تعديل padding-top ليتوافق مع ارتفاع الهيدر الأصغر */
+  body {
+    padding-top: 70px;
+  }
+
+  /* تعديل القائمة الجانبية لتبدأ من أسفل الهيدر مباشرة */
+  .nav-menu {
+    top: 70px;
+    height: calc(100vh - 70px);
   }
 
   .header-inner {
@@ -3120,6 +3154,17 @@ textarea.form-control {
 }
 
 @media (max-width: 380px) {
+  /* تعديل padding-top ليتوافق مع ارتفاع الهيدر على الشاشات الصغيرة جداً */
+  body {
+    padding-top: 64px;
+  }
+
+  /* تعديل القائمة الجانبية */
+  .nav-menu {
+    top: 64px;
+    height: calc(100vh - 64px);
+  }
+
   .header-inner {
     height: 64px;
     gap: 0.35rem;
