@@ -49,9 +49,31 @@ document.addEventListener('DOMContentLoaded', () => {
         heroBgVideo.muted = true;
         heroBgVideo.defaultMuted = true;
         heroBgVideo.playsInline = true;
+        heroBgVideo.setAttribute('muted', '');
+        heroBgVideo.setAttribute('playsinline', '');
+        heroBgVideo.setAttribute('webkit-playsinline', '');
 
         const revealVideo = () => {
             heroBgVideo.classList.add('is-loaded');
+        };
+
+        const tryPlay = () => {
+            heroBgVideo.muted = true;
+            const playPromise = heroBgVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    revealVideo();
+                }).catch(() => {
+                    // في حال تفعيل وضع توفير البيانات أو منع التشغيل التلقائي من المتصفح
+                    const unlockVideo = () => {
+                        heroBgVideo.play().catch(() => {});
+                        revealVideo();
+                    };
+                    ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
+                        window.addEventListener(evt, unlockVideo, { once: true, passive: true });
+                    });
+                });
+            }
         };
 
         if (heroBgVideo.readyState >= 2) {
@@ -62,32 +84,8 @@ document.addEventListener('DOMContentLoaded', () => {
             heroBgVideo.addEventListener('playing', revealVideo, { once: true });
         }
 
-        const startPlayback = () => {
-            heroBgVideo.muted = true;
-            const playPromise = heroBgVideo.play();
-            if (playPromise !== undefined) {
-                playPromise.then(() => {
-                    revealVideo();
-                }).catch(() => {
-                    // إذا منع المتصفح التشغيل التلقائي، نفعله عند أول لمس أو تمرير
-                    const unlockVideo = () => {
-                        heroBgVideo.play().catch(() => {});
-                        revealVideo();
-                        window.removeEventListener('click', unlockVideo);
-                        window.removeEventListener('touchstart', unlockVideo);
-                        window.removeEventListener('scroll', unlockVideo);
-                    };
-                    window.addEventListener('click', unlockVideo, { once: true });
-                    window.addEventListener('touchstart', unlockVideo, { once: true });
-                    window.addEventListener('scroll', unlockVideo, { once: true });
-                });
-            }
-        };
-
-        startPlayback();
-
-        // ضمان الظهور الناعم وتجنب الشاشة السوداء
-        setTimeout(revealVideo, 600);
+        tryPlay();
+        setTimeout(revealVideo, 300);
     }
 
     // --------------------------------------------------------------------------
