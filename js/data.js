@@ -69,6 +69,17 @@ const translations = {
         feature4Title: "موقع استراتيجي مميز",
         feature4Desc: "على مقربة مباشرة من أوتوستراد إدلب مع مواقف مريحة وواسعة.",
 
+        // Video Showcase
+        videoShowcaseBadge: "🎬 تجربة ستورفين السينمائية",
+        videoShowcaseTitle: "شغف وسحر القهوة في كل قطرة",
+        videoShowcaseSubtitle: "شاهد كيف تبدأ رحلة النكهة الحقيقية مع تدفق الإسبريسو الفاخر وحبوب البن المنتقاة بعناية",
+        videoShowcaseFeature1: "تحميص حرفي طازج",
+        videoShowcaseFeature1Desc: "أفضل سلالات البن الأثيوبي والكولومبي",
+        videoShowcaseFeature2: "استخلاص إسبريسو مثالي",
+        videoShowcaseFeature2Desc: "قوام كريمي ونكهات عطرية غنية ومتوازنة",
+        videoShowcaseFeature3: "نكهة تأسر الحواس",
+        videoShowcaseFeature3Desc: "طقس يومي من السعادة مع كل رشفة",
+
         // Menu
         menuTitle: "تشكيلة Storven المميزة",
         menuSubtitle: "استكشف قائمتنا الغنية بالمشروبات المختصة والمأكولات الشهية",
@@ -77,6 +88,8 @@ const translations = {
         menuOrderBtn: "اطلب عبر واتساب",
         menuEmptyResults: "عذراً، لم نجد أصنافاً مطابقة لبحثك.",
         filterAll: "الكل",
+        menuViewAll: "عرض كل القائمة",
+        menuViewLess: "عرض أقل",
 
         // Offers
         offersTitle: "عروض ستورفين الحصرية",
@@ -196,6 +209,17 @@ const translations = {
         feature4Title: "Prime Highway Location",
         feature4Desc: "Directly accessible near Idlib Highway with spacious parking.",
 
+        // Video Showcase
+        videoShowcaseBadge: "🎬 The Storven Experience",
+        videoShowcaseTitle: "Coffee Passion in Every Drop",
+        videoShowcaseSubtitle: "Watch the authentic flavor journey unfold with rich espresso flow and artisanal roasted beans",
+        videoShowcaseFeature1: "Artisan Fresh Roast",
+        videoShowcaseFeature1Desc: "Finest Ethiopian and Colombian specialty beans",
+        videoShowcaseFeature2: "Flawless Extraction",
+        videoShowcaseFeature2Desc: "Silky crema and rich, balanced aromatic notes",
+        videoShowcaseFeature3: "Sensory Sensation",
+        videoShowcaseFeature3Desc: "A daily ritual of inspiration with every sip",
+
         // Menu
         menuTitle: "The Storven Signature Menu",
         menuSubtitle: "Discover our handcrafted specialty coffees, refreshing cold crafts, and treats",
@@ -204,6 +228,8 @@ const translations = {
         menuOrderBtn: "Order via WhatsApp",
         menuEmptyResults: "No menu items match your search.",
         filterAll: "All",
+        menuViewAll: "View Full Menu",
+        menuViewLess: "Show Less",
 
         // Offers
         offersTitle: "Exclusive Storven Offers",

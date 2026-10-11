@@ -586,13 +586,13 @@ button, input, textarea, select {
    ========================================================================== */
 .hero-section {
   position: relative;
-  min-height: 86vh;
+  min-height: 88vh;
   display: flex;
   align-items: center;
-  background: #091710;
+  background: #06110c;
   color: var(--text-on-dark);
   overflow: hidden;
-  padding-block: 5rem;
+  padding-block: 5.5rem;
 }
 
 .hero-bg-wrapper {
@@ -600,27 +600,72 @@ button, input, textarea, select {
   inset: 0;
   z-index: 1;
   overflow: hidden;
+  background-color: #06110c;
 }
 
-.hero-bg-img {
+/* فيديو الإنترو السينمائي فائق الدقة للهيدر */
+.hero-bg-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
+  min-width: 100%;
+  min-height: 100%;
   object-fit: cover;
-  opacity: 0.24;
-  filter: blur(6px);
-  transform: scale(1.05);
-  transition: transform 10s ease;
+  object-position: 38% center;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  filter: contrast(1.04) brightness(0.94);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity;
 }
 
-.hero-section:hover .hero-bg-img {
-  transform: scale(1.1);
+.hero-bg-video.is-loaded {
+  opacity: 1;
 }
 
+[dir="ltr"] .hero-bg-video,
+html[lang="en"] .hero-bg-video {
+  object-position: 62% center;
+}
+
+/* طبقة التدرج اللوني الشفافة الفاخرة لضمان وضوح النصوص وحفظ نقاء الفيديو */
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: var(--bg-hero-overlay);
-  backdrop-filter: blur(2px);
+  z-index: 2;
+  pointer-events: none;
+  background: 
+    linear-gradient(to bottom, 
+      rgba(6, 17, 12, 0.65) 0%, 
+      rgba(6, 17, 12, 0.20) 25%, 
+      rgba(6, 17, 12, 0.35) 70%, 
+      rgba(6, 17, 12, 0.95) 100%
+    ),
+    linear-gradient(to left, 
+      rgba(6, 17, 12, 0.88) 0%, 
+      rgba(6, 17, 12, 0.62) 45%, 
+      rgba(6, 17, 12, 0.15) 100%
+    );
+}
+
+[dir="ltr"] .hero-overlay,
+html[lang="en"] .hero-overlay {
+  background: 
+    linear-gradient(to bottom, 
+      rgba(6, 17, 12, 0.65) 0%, 
+      rgba(6, 17, 12, 0.20) 25%, 
+      rgba(6, 17, 12, 0.35) 70%, 
+      rgba(6, 17, 12, 0.95) 100%
+    ),
+    linear-gradient(to right, 
+      rgba(6, 17, 12, 0.88) 0%, 
+      rgba(6, 17, 12, 0.62) 45%, 
+      rgba(6, 17, 12, 0.15) 100%
+    );
 }
 
 /* تخطيط الهيرو ثنائي الأعمدة */
@@ -630,7 +675,7 @@ button, input, textarea, select {
   align-items: center;
   gap: 3rem;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   width: 100%;
 }
 
@@ -799,24 +844,9 @@ button, input, textarea, select {
   filter: drop-shadow(0 -4px 14px rgba(223, 197, 135, 0.35));
 }
 
-/* مؤشر الآلة الكاتبة الذهبي المتوهج - مضبوط بدقة بعد آخر حرف */
+/* إخفاء مؤشر الآلة الكاتبة لجعل العنوان ثابتاً وفخماً بالكامل */
 .hero-typewriter-cursor {
-  display: inline-block;
-  width: 4px;
-  height: 0.82em;
-  margin-left: 8px;
-  margin-right: 0;
-  background: linear-gradient(180deg, #FFE8A3 0%, #C9A55C 100%);
-  border-radius: 3px;
-  vertical-align: -0.04em;
-  box-shadow: 0 0 10px rgba(201, 165, 92, 0.95), 0 0 22px rgba(255, 232, 163, 0.6);
-  animation: typewriterCursorPulse 0.85s infinite ease-in-out;
-  flex-shrink: 0;
-}
-
-.hero-typewriter-cursor.typing {
-  animation: none;
-  opacity: 1;
+  display: none !important;
 }
 
 @keyframes typewriterCursorPulse {
@@ -1058,6 +1088,363 @@ section[id] {
   font-size: 0.9rem;
   color: var(--text-secondary);
   line-height: 1.6;
+}
+
+/* ==========================================================================
+   5.1 قسم العرض السينمائي (Cinematic Video Showcase Section)
+   ========================================================================== */
+.video-showcase-section {
+  position: relative;
+  padding-block: 6.5rem 5.5rem;
+  background: radial-gradient(circle at 50% 30%, rgba(15, 38, 27, 0.45) 0%, rgba(6, 17, 12, 0.95) 70%, var(--bg-main) 100%);
+  overflow: hidden;
+}
+
+[data-theme="light"] .video-showcase-section {
+  background: radial-gradient(circle at 50% 20%, rgba(201, 165, 92, 0.12) 0%, rgba(245, 241, 232, 0.95) 60%, var(--bg-main) 100%);
+}
+
+.showcase-ambient-glow {
+  position: absolute;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 750px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(201, 165, 92, 0.22) 0%, rgba(15, 42, 29, 0.15) 45%, transparent 70%);
+  filter: blur(65px);
+  pointer-events: none;
+  z-index: 1;
+  animation: auraGlowPulse 6s infinite ease-in-out;
+}
+
+.showcase-container {
+  position: relative;
+  z-index: 2;
+  max-width: 1080px;
+}
+
+/* إطار مشغل الفيديو الفاخر */
+.showcase-player-card {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  background: rgba(12, 24, 18, 0.82);
+  border: 1px solid rgba(201, 165, 92, 0.32);
+  border-radius: 26px;
+  box-shadow: 
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    0 0 35px rgba(201, 165, 92, 0.16);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+[data-theme="light"] .showcase-player-card {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(201, 165, 92, 0.45);
+  box-shadow: 
+    0 24px 60px rgba(15, 42, 29, 0.12),
+    0 0 30px rgba(201, 165, 92, 0.18);
+}
+
+.showcase-player-card:hover {
+  border-color: rgba(227, 186, 107, 0.55);
+  box-shadow: 
+    0 28px 70px rgba(0, 0, 0, 0.65),
+    0 0 45px rgba(201, 165, 92, 0.25);
+}
+
+/* حاوية مشغل الفيديو بأبعاد سينمائية */
+.showcase-video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000000;
+  overflow: hidden;
+  cursor: pointer;
+  user-select: none;
+}
+
+.showcase-video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center center;
+  display: block;
+  transform: scale(1.001);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.5s ease;
+}
+
+.showcase-video-wrapper:hover .showcase-video-player {
+  transform: scale(1.02);
+}
+
+/* تدرج سينمائي فوق الفيديو لتعزيز العمق وحماية الرؤية */
+.showcase-player-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 50%, transparent 60%, rgba(0, 0, 0, 0.45) 100%);
+  z-index: 2;
+}
+
+/* شارة الجودة العلوية */
+.showcase-quality-badge {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(6, 17, 12, 0.72);
+  border: 1px solid rgba(201, 165, 92, 0.4);
+  backdrop-filter: blur(8px);
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--color-gold-light);
+  letter-spacing: 0.6px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+[dir="ltr"] .showcase-quality-badge {
+  right: auto;
+  left: 20px;
+}
+
+.quality-pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #25D366;
+  box-shadow: 0 0 8px #25D366;
+  animation: pulseDot 2s infinite ease-in-out;
+}
+
+/* زر التشغيل الأوسط الكبير الفاخر */
+.showcase-big-play-btn {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #FFE8A3 0%, #C9A55C 100%);
+  border: none;
+  color: #08100b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(201, 165, 92, 0.6);
+  cursor: pointer;
+  z-index: 6;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, box-shadow 0.3s ease;
+}
+
+.showcase-big-play-btn .big-play-icon {
+  margin-left: 3px;
+  line-height: 1;
+}
+
+.showcase-big-play-btn .big-play-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 232, 163, 0.6);
+  animation: playRingPulse 2.2s infinite ease-out;
+  pointer-events: none;
+}
+
+@keyframes playRingPulse {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+.showcase-big-play-btn:hover {
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.7), 0 0 35px rgba(227, 186, 107, 0.85);
+}
+
+/* إخفاء زر التشغيل الأوسط عند تشغيل الفيديو */
+.showcase-video-wrapper.is-playing .showcase-big-play-btn {
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) scale(0.85);
+}
+
+.showcase-video-wrapper.is-paused .showcase-big-play-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* شريط التحكم السفلي المخصص */
+.showcase-controls-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1.2rem 1.4rem 0.9rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.88) 0%, rgba(0, 0, 0, 0.45) 75%, transparent 100%);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  z-index: 7;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.showcase-video-wrapper:hover .showcase-controls-bar,
+.showcase-video-wrapper.controls-active .showcase-controls-bar,
+.showcase-video-wrapper.is-paused .showcase-controls-bar {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ctrl-btn {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.ctrl-btn:hover {
+  background: rgba(201, 165, 92, 0.35);
+  border-color: var(--color-gold-light);
+  color: var(--color-gold-light);
+  transform: scale(1.08);
+}
+
+/* شريط التقدم */
+.ctrl-progress-wrap {
+  flex: 1;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: height 0.2s ease;
+}
+
+.ctrl-progress-wrap:hover {
+  height: 9px;
+}
+
+.ctrl-progress-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #C9A55C 0%, #FFE8A3 100%);
+  border-radius: 4px;
+  position: relative;
+}
+
+.ctrl-progress-handle {
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  transform: translateY(-50%) scale(0);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease;
+}
+
+.ctrl-progress-wrap:hover .ctrl-progress-handle {
+  transform: translateY(-50%) scale(1);
+}
+
+.ctrl-time-display {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.82rem;
+  font-weight: 700;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+/* شريط الميزات الثلاث أسفل الفيديو */
+.showcase-features-bar {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  padding: 1.6rem 2.2rem;
+  border-top: 1px solid rgba(201, 165, 92, 0.18);
+  background: rgba(8, 18, 13, 0.65);
+}
+
+[data-theme="light"] .showcase-features-bar {
+  background: rgba(255, 255, 255, 0.85);
+  border-top: 1px solid rgba(201, 165, 92, 0.25);
+}
+
+.showcase-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.showcase-feat-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(201, 165, 92, 0.16);
+  border: 1px solid rgba(201, 165, 92, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+  color: var(--color-gold-light);
+}
+
+.showcase-feat-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.showcase-feat-texts strong {
+  font-size: 0.98rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.showcase-feat-texts span {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+}
+
+@media (max-width: 850px) {
+  .showcase-features-bar {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    padding: 1.3rem 1.4rem;
+  }
+  .showcase-video-wrapper {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 /* ==========================================================================
@@ -1346,6 +1733,100 @@ section[id] {
   color: var(--text-secondary);
   font-size: 1.2rem;
   font-weight: 600;
+}
+
+/* زر عرض كل القائمة التفاعلي الفاخر */
+.menu-view-all-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3.2rem;
+  width: 100%;
+}
+
+.btn-view-all-menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.1rem;
+  padding: 0.75rem 2.2rem;
+  border-radius: var(--radius-pill);
+  border: 1.5px solid var(--color-dark-green);
+  background: var(--bg-card);
+  color: var(--color-dark-green);
+  font-family: inherit;
+  font-size: 1.12rem;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(15, 42, 29, 0.08);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  user-select: none;
+}
+
+[data-theme="dark"] .btn-view-all-menu {
+  border-color: rgba(201, 165, 92, 0.75);
+  background: rgba(15, 38, 27, 0.75);
+  color: var(--color-gold-light);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
+}
+
+.btn-view-all-menu:hover {
+  transform: translateY(-3px);
+  background: var(--color-dark-green);
+  color: #FFFFFF;
+  box-shadow: 0 10px 28px rgba(15, 42, 29, 0.22);
+}
+
+[data-theme="dark"] .btn-view-all-menu:hover {
+  background: var(--color-gold);
+  color: #08100b;
+  box-shadow: 0 10px 28px rgba(201, 165, 92, 0.35);
+}
+
+.btn-view-all-menu:hover .view-all-badge {
+  background: rgba(255, 255, 255, 0.25);
+  color: #FFFFFF;
+}
+
+[data-theme="dark"] .btn-view-all-menu:hover .view-all-badge {
+  background: rgba(8, 16, 11, 0.3);
+  color: #08100b;
+}
+
+.view-all-text {
+  letter-spacing: 0.2px;
+  line-height: 1.2;
+}
+
+.view-all-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+}
+
+.btn-view-all-menu:hover .view-all-icon {
+  transform: scale(1.15);
+}
+
+.view-all-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 28px;
+  padding: 0 0.6rem;
+  border-radius: 9999px;
+  background: #E2EBE5;
+  color: var(--color-dark-green);
+  font-size: 0.95rem;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .view-all-badge {
+  background: rgba(201, 165, 92, 0.22);
+  color: var(--color-gold-light);
 }
 
 /* ==========================================================================
@@ -3065,8 +3546,8 @@ textarea.form-control {
     max-width: 100%;
   }
 
-  .hero-bg-img {
-    transform: none !important;
+  .hero-bg-video {
+    object-position: center center !important;
   }
 
   .hero-title .brand-accent {

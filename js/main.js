@@ -42,6 +42,55 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 2000);
 
     // --------------------------------------------------------------------------
+    // 1.1 إنترو الفيديو السينمائي للهيدر (Cinematic Header Video Intro)
+    // --------------------------------------------------------------------------
+    const heroBgVideo = document.getElementById('hero-bg-video');
+    if (heroBgVideo) {
+        heroBgVideo.muted = true;
+        heroBgVideo.defaultMuted = true;
+        heroBgVideo.playsInline = true;
+
+        const revealVideo = () => {
+            heroBgVideo.classList.add('is-loaded');
+        };
+
+        if (heroBgVideo.readyState >= 2) {
+            revealVideo();
+        } else {
+            heroBgVideo.addEventListener('loadeddata', revealVideo, { once: true });
+            heroBgVideo.addEventListener('canplay', revealVideo, { once: true });
+            heroBgVideo.addEventListener('playing', revealVideo, { once: true });
+        }
+
+        const startPlayback = () => {
+            heroBgVideo.muted = true;
+            const playPromise = heroBgVideo.play();
+            if (playPromise !== undefined) {
+                playPromise.then(() => {
+                    revealVideo();
+                }).catch(() => {
+                    // إذا منع المتصفح التشغيل التلقائي، نفعله عند أول لمس أو تمرير
+                    const unlockVideo = () => {
+                        heroBgVideo.play().catch(() => {});
+                        revealVideo();
+                        window.removeEventListener('click', unlockVideo);
+                        window.removeEventListener('touchstart', unlockVideo);
+                        window.removeEventListener('scroll', unlockVideo);
+                    };
+                    window.addEventListener('click', unlockVideo, { once: true });
+                    window.addEventListener('touchstart', unlockVideo, { once: true });
+                    window.addEventListener('scroll', unlockVideo, { once: true });
+                });
+            }
+        };
+
+        startPlayback();
+
+        // ضمان الظهور الناعم وتجنب الشاشة السوداء
+        setTimeout(revealVideo, 600);
+    }
+
+    // --------------------------------------------------------------------------
     // 2. إدارة المظهر الداكن/الفاتح (Theme Switcher)
     // --------------------------------------------------------------------------
     const themeToggleBtn = document.getElementById('theme-toggle-btn');
@@ -411,6 +460,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 activeCategory = cat.id;
                 document.querySelectorAll('.category-capsule').forEach(c => c.classList.remove('active'));
                 btn.classList.add('active');
+                isMenuExpanded = false;
                 renderMenuItems();
             });
 
@@ -434,6 +484,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (menuSearchInput) {
         menuSearchInput.addEventListener('input', (e) => {
             searchQuery = e.target.value.trim().toLowerCase();
+            isMenuExpanded = false;
             renderMenuItems();
         });
     }
@@ -441,6 +492,15 @@ document.addEventListener('DOMContentLoaded', () => {
     // --------------------------------------------------------------------------
     // 8. تصيير منتجات القائمة وإنشاء روابط الطلب لواتساب (Menu Items & WhatsApp)
     // --------------------------------------------------------------------------
+    let isMenuExpanded = false;
+    const INITIAL_MENU_LIMIT = 4; // عرض 3 إلى 4 منتجات في البداية كما طلب المستخدم
+
+    const menuViewAllWrapper = document.getElementById('menu-view-all-wrapper');
+    const btnViewAllMenu = document.getElementById('btn-view-all-menu');
+    const viewAllCountBadge = document.getElementById('view-all-count-badge');
+    const viewAllText = document.getElementById('view-all-text');
+    const viewAllIcon = document.getElementById('view-all-icon');
+
     function renderMenuItems() {
         if (!menuGrid) return;
         menuGrid.innerHTML = '';
@@ -469,10 +529,18 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p>☕ ${emptyMsg}</p>
                 </div>
             `;
+            if (menuViewAllWrapper) {
+                menuViewAllWrapper.style.display = 'none';
+            }
             return;
         }
 
-        filtered.forEach(item => {
+        // تحديد المنتجات المعروضة: 4 في البداية أو كل المنتجات عند النقر (أو عند وجود بحث نشط)
+        const totalCount = filtered.length;
+        const shouldShowAll = isMenuExpanded || searchQuery.length > 0;
+        const itemsToDisplay = shouldShowAll ? filtered : filtered.slice(0, INITIAL_MENU_LIMIT);
+
+        itemsToDisplay.forEach(item => {
             const card = document.createElement('div');
             card.className = 'product-card reveal active';
 
@@ -504,6 +572,54 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
 
             menuGrid.appendChild(card);
+        });
+
+        // تحديث زر "عرض كل القائمة" والعدد الإجمالي
+        if (menuViewAllWrapper) {
+            if (searchQuery.length > 0 || totalCount <= INITIAL_MENU_LIMIT) {
+                menuViewAllWrapper.style.display = 'none';
+            } else {
+                menuViewAllWrapper.style.display = 'flex';
+                if (viewAllCountBadge) {
+                    viewAllCountBadge.textContent = totalCount;
+                }
+
+                if (isMenuExpanded) {
+                    if (viewAllText) viewAllText.textContent = translations[currentLang]?.menuViewLess || 'عرض أقل';
+                    if (viewAllIcon) {
+                        viewAllIcon.innerHTML = `
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="18 15 12 9 6 15"></polyline>
+                            </svg>
+                        `;
+                    }
+                } else {
+                    if (viewAllText) viewAllText.textContent = translations[currentLang]?.menuViewAll || 'عرض كل القائمة';
+                    if (viewAllIcon) {
+                        viewAllIcon.innerHTML = `
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="3" width="7" height="7"></rect>
+                                <rect x="14" y="14" width="7" height="7"></rect>
+                                <rect x="3" y="14" width="7" height="7"></rect>
+                            </svg>
+                        `;
+                    }
+                }
+            }
+        }
+    }
+
+    if (btnViewAllMenu) {
+        btnViewAllMenu.addEventListener('click', () => {
+            isMenuExpanded = !isMenuExpanded;
+            renderMenuItems();
+            if (!isMenuExpanded) {
+                const menuSec = document.getElementById('menu');
+                if (menuSec) {
+                    menuSec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
         });
     }
 
@@ -985,8 +1101,8 @@ document.addEventListener('DOMContentLoaded', () => {
             steamCtx.clearRect(0, 0, w, h);
 
             spawnCounter++;
-            // يبدأ الدخان بالظهور التدريجي عندما تبدأ الكلمة بالتشكل وتستمر بكثافة متوازنة
-            const hasStartedTyping = typewriterState.charIndex >= 4;
+            // صعود بخار هادئ ومتوازن فوق العنوان الثابت
+            const hasStartedTyping = true;
 
             if (hasStartedTyping && (spawnCounter % 5 === 0) && steamParticles.length < 22) {
                 let targetX = w * 0.42;
@@ -1073,78 +1189,227 @@ document.addEventListener('DOMContentLoaded', () => {
         renderSteamLoop();
     }
 
-    function typeStep() {
+    function fixTitleText() {
         if (!heroTypewriterEl) return;
-        const phrases = typewriterPhrases[typewriterState.lang] || typewriterPhrases.ar;
-        const currentPhrase = phrases[typewriterState.phraseIndex % phrases.length];
-
+        heroTypewriterEl.textContent = 'Storven Coffee';
+        heroTypewriterEl.className = 'brand-accent brand-en';
         if (heroCursorEl) {
-            heroCursorEl.classList.add('typing');
-        }
-
-        if (!typewriterState.isDeleting) {
-            typewriterState.charIndex++;
-            const currentSubstr = currentPhrase.substring(0, typewriterState.charIndex);
-            heroTypewriterEl.textContent = currentSubstr;
-
-            if (isEnglishText(currentSubstr)) {
-                heroTypewriterEl.classList.add('brand-en');
-            } else {
-                heroTypewriterEl.classList.remove('brand-en');
-            }
-
-            if (typewriterState.charIndex >= currentPhrase.length) {
-                if (heroCursorEl) heroCursorEl.classList.remove('typing');
-                typewriterState.isDeleting = true;
-                const isBrand = currentPhrase.includes('Storven');
-                typewriterState.timeoutId = setTimeout(typeStep, isBrand ? 3200 : 2200);
-                return;
-            }
-
-            const typingDelay = 85 + Math.random() * 45;
-            typewriterState.timeoutId = setTimeout(typeStep, typingDelay);
-        } else {
-            typewriterState.charIndex--;
-            const currentSubstr = currentPhrase.substring(0, typewriterState.charIndex);
-            heroTypewriterEl.textContent = currentSubstr;
-
-            if (currentSubstr.length > 0) {
-                if (isEnglishText(currentSubstr)) {
-                    heroTypewriterEl.classList.add('brand-en');
-                } else {
-                    heroTypewriterEl.classList.remove('brand-en');
-                }
-            }
-
-            if (typewriterState.charIndex <= 0) {
-                if (heroCursorEl) heroCursorEl.classList.remove('typing');
-                typewriterState.isDeleting = false;
-                typewriterState.phraseIndex = (typewriterState.phraseIndex + 1) % phrases.length;
-                typewriterState.timeoutId = setTimeout(typeStep, 450);
-                return;
-            }
-
-            typewriterState.timeoutId = setTimeout(typeStep, 40);
+            heroCursorEl.style.display = 'none';
         }
     }
 
     function updateTypewriterLang(newLang) {
-        if (typewriterState.timeoutId) {
-            clearTimeout(typewriterState.timeoutId);
-        }
-        typewriterState.lang = newLang;
-        typewriterState.phraseIndex = 0;
-        typewriterState.charIndex = 0;
-        typewriterState.isDeleting = false;
-        if (heroTypewriterEl) {
-            heroTypewriterEl.textContent = '';
-        }
-        typeStep();
+        fixTitleText();
     }
 
-    // تشغيل محرك البخار والآلة الكاتبة
+    // تشغيل محرك البخار وتثبيت النص الفاخر بشكل دائم
     initTitleSteamEngine();
-    typeStep();
+    fixTitleText();
+
+    // --------------------------------------------------------------------------
+    // 17. مشغل قسم العرض السينمائي الذكي (Smart Video Showcase Controller)
+    // --------------------------------------------------------------------------
+    const showcaseVideo = document.getElementById('showcase-video');
+    const showcaseCard = document.getElementById('showcasePlayerCard');
+    const showcaseVideoWrapper = document.getElementById('showcaseVideoWrapper');
+    const showcaseBigPlayBtn = document.getElementById('showcaseBigPlayBtn');
+    const showcaseBigPlayIcon = document.getElementById('showcaseBigPlayIcon');
+    const showcasePlayPauseBtn = document.getElementById('showcasePlayPauseBtn');
+    const showcasePlayIcon = document.getElementById('showcasePlayIcon');
+    const showcaseProgressBar = document.getElementById('showcaseProgressBar');
+    const showcaseProgressWrap = document.getElementById('showcaseProgressWrap');
+    const showcaseCurrentTime = document.getElementById('showcaseCurrentTime');
+    const showcaseTotalTime = document.getElementById('showcaseTotalTime');
+    const showcaseMuteBtn = document.getElementById('showcaseMuteBtn');
+    const showcaseMuteIcon = document.getElementById('showcaseMuteIcon');
+    const showcaseFullscreenBtn = document.getElementById('showcaseFullscreenBtn');
+
+    if (showcaseVideo) {
+        let isUserManuallyPaused = false;
+        let controlsHideTimeout = null;
+
+        // تهيئة المشغل بصمت تام متوافق مع سياسات المتصفحات
+        showcaseVideo.muted = true;
+        showcaseVideo.defaultMuted = true;
+        showcaseVideo.playsInline = true;
+
+        const formatTime = (seconds) => {
+            if (isNaN(seconds)) return '00:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        };
+
+        const updatePlayStateUI = (isPlaying) => {
+            if (showcaseVideoWrapper) {
+                if (isPlaying) {
+                    showcaseVideoWrapper.classList.add('is-playing');
+                    showcaseVideoWrapper.classList.remove('is-paused');
+                } else {
+                    showcaseVideoWrapper.classList.remove('is-playing');
+                    showcaseVideoWrapper.classList.add('is-paused');
+                }
+            }
+            if (showcasePlayIcon) {
+                showcasePlayIcon.textContent = isPlaying ? '⏸' : '▶';
+            }
+            if (showcaseBigPlayIcon) {
+                showcaseBigPlayIcon.textContent = isPlaying ? '⏸' : '▶';
+            }
+        };
+
+        const playVideo = () => {
+            showcaseVideo.play().then(() => {
+                updatePlayStateUI(true);
+            }).catch(() => {
+                updatePlayStateUI(false);
+            });
+        };
+
+        const pauseVideo = () => {
+            showcaseVideo.pause();
+            updatePlayStateUI(false);
+        };
+
+        const togglePlay = (fromUser = false) => {
+            if (showcaseVideo.paused) {
+                if (fromUser) isUserManuallyPaused = false;
+                playVideo();
+            } else {
+                if (fromUser) isUserManuallyPaused = true;
+                pauseVideo();
+            }
+        };
+
+        // التحكم بالنقر
+        if (showcaseBigPlayBtn) {
+            showcaseBigPlayBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlay(true);
+            });
+        }
+
+        if (showcasePlayPauseBtn) {
+            showcasePlayPauseBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                togglePlay(true);
+            });
+        }
+
+        if (showcaseVideoWrapper) {
+            showcaseVideoWrapper.addEventListener('click', (e) => {
+                if (e.target.closest('#showcaseControlsBar')) return;
+                togglePlay(true);
+            });
+        }
+
+        // تحديث شريط التقدم والوقت
+        showcaseVideo.addEventListener('timeupdate', () => {
+            if (showcaseVideo.duration) {
+                const percent = (showcaseVideo.currentTime / showcaseVideo.duration) * 100;
+                if (showcaseProgressBar) {
+                    showcaseProgressBar.style.width = `${percent}%`;
+                }
+                if (showcaseCurrentTime) {
+                    showcaseCurrentTime.textContent = formatTime(showcaseVideo.currentTime);
+                }
+            }
+        });
+
+        showcaseVideo.addEventListener('loadedmetadata', () => {
+            if (showcaseTotalTime) {
+                showcaseTotalTime.textContent = formatTime(showcaseVideo.duration);
+            }
+        });
+
+        // النقر على شريط التقدم للتمرير الزمني
+        if (showcaseProgressWrap) {
+            const seek = (e) => {
+                const rect = showcaseProgressWrap.getBoundingClientRect();
+                const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+                if (showcaseVideo.duration) {
+                    showcaseVideo.currentTime = pos * showcaseVideo.duration;
+                }
+            };
+
+            showcaseProgressWrap.addEventListener('click', (e) => {
+                e.stopPropagation();
+                seek(e);
+            });
+        }
+
+        // كتم وتفعيل الصوت
+        if (showcaseMuteBtn) {
+            showcaseMuteBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showcaseVideo.muted = !showcaseVideo.muted;
+                if (showcaseMuteIcon) {
+                    showcaseMuteIcon.textContent = showcaseVideo.muted ? '🔇' : '🔊';
+                }
+                showcaseMuteBtn.title = showcaseVideo.muted ? 'تفعيل الصوت' : 'كتم الصوت';
+            });
+        }
+
+        // وضع ملء الشاشة
+        if (showcaseFullscreenBtn) {
+            showcaseFullscreenBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                if (!document.fullscreenElement) {
+                    if (showcaseVideoWrapper.requestFullscreen) {
+                        showcaseVideoWrapper.requestFullscreen();
+                    } else if (showcaseVideo.webkitRequestFullscreen) {
+                        showcaseVideo.webkitRequestFullscreen();
+                    }
+                } else {
+                    if (document.exitFullscreen) {
+                        document.exitFullscreen();
+                    }
+                }
+            });
+        }
+
+        // إدارة ظهور شريط التحكم على الهوفر أو اللمس
+        const resetControlsTimer = () => {
+            if (showcaseVideoWrapper) {
+                showcaseVideoWrapper.classList.add('controls-active');
+            }
+            if (controlsHideTimeout) clearTimeout(controlsHideTimeout);
+            controlsHideTimeout = setTimeout(() => {
+                if (!showcaseVideo.paused && showcaseVideoWrapper) {
+                    showcaseVideoWrapper.classList.remove('controls-active');
+                }
+            }, 2500);
+        };
+
+        if (showcaseVideoWrapper) {
+            showcaseVideoWrapper.addEventListener('mousemove', resetControlsTimer);
+            showcaseVideoWrapper.addEventListener('touchstart', resetControlsTimer, { passive: true });
+        }
+
+        // مراقبة الظهور على الشاشة لتشغيل وإيقاف الفيديو بذكاء
+        if ('IntersectionObserver' in window) {
+            const showcaseObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    // عندما يدخل القسم الشاشة بنسبة كافية (0.4 فما فوق)
+                    if (entry.isIntersecting && entry.intersectionRatio >= 0.4) {
+                        if (!isUserManuallyPaused && showcaseVideo.paused) {
+                            playVideo();
+                        }
+                    } else if (entry.intersectionRatio < 0.2) {
+                        // عند مغادرة القسم، إيقاف فوري لتوفير المعالجة والبطارية
+                        if (!showcaseVideo.paused) {
+                            pauseVideo();
+                        }
+                    }
+                });
+            }, {
+                root: null,
+                threshold: [0, 0.2, 0.4, 0.7]
+            });
+
+            showcaseObserver.observe(showcaseCard || showcaseVideo);
+        }
+    }
 
     // --------------------------------------------------------------------------
     // تهيئة التطبيق باللغة المختارة
